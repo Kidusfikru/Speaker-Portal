@@ -1,69 +1,76 @@
-# React + TypeScript + Vite
+# Speaker Portal Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Speaker Portal, a modern event and speaker management platform. Built with Vite, React, TypeScript, Material UI, and Redux Toolkit, it provides a professional, scalable, and beautiful user experience for event organizers, speakers, and attendees.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite** (React + TypeScript)
+- **Material UI (MUI)** for all UI components and theming
+- **Redux Toolkit** for state management
+- **RTK Query** for API integration
+- **React Hook Form** for form management
+- **MUI DataGrid** for advanced tables
+- **Axios** for custom API calls
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+  api/         # RTK Query API slices (auth, events, speakers, profile, etc.)
+  assets/      # Static assets (images, logos)
+  components/  # Shared/presentational components (atomic UI, DataGrid cells, etc.)
+    ui/        # Atomic UI components (Button, Card, Input, etc.)
+  constants/   # App-wide constants (API base URL, enums)
+  features/    # Feature-based slices/components (auth, events, etc.)
+  hooks/       # Custom React hooks
+  layouts/     # Layout wrappers (sidebar, main layout)
+  pages/       # Route-level components (Dashboard, Events, Speakers, Profile, Auth)
+  services/    # Business logic/services
+  store/       # Redux store setup
+  theme/       # Theming and design system
+  types/       # TypeScript types/interfaces
+  utils/       # Utility functions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Authentication**: Modern login/signup UI with right-aligned forms and background image
+- **Role-based Access**: Supports speakers and attendees, with protected routes and role-based UI
+- **Profile Management**: Edit profile, upload avatar, update bio/contact info
+- **Event Management**: Create, edit, and list events; assign speakers (not attendees) to events
+- **Speaker Management**: List and manage speakers; only speakers can be selected for events
+- **RSVP System**: RSVP status for each speaker per event, displayed in event listings
+- **Modern UI/UX**: Full Material UI theming, beautiful sidebar, elegant backgrounds, responsive layouts
+- **API Integration**: Modularized API calls, integrated with backend at `http://localhost:3000/`
+- **State Management**: Redux Toolkit and RTK Query for robust, scalable state and data fetching
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Setup & Development
+
+1. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+3. **Environment:**
+   - The frontend expects the backend API to be running at `http://localhost:3000/`.
+   - API endpoints are managed in `src/api` and `src/constants/api.ts`.
+
+## Customization & Theming
+
+- All theming is managed in `src/theme/`. You can adjust the color palette, typography, and component overrides there.
+- The sidebar and background use gradients and transparency for a modern look.
+
+## Contributing
+
+1. Follow the established folder structure and naming conventions.
+2. Use Material UI components and theming for all UI work.
+3. Place shared UI in `src/components/ui/` and feature-specific logic in `src/features/`.
+4. Use RTK Query for all API calls; add new endpoints in `src/api/`.
+5. Keep code clean, efficient, and highly componentized.
