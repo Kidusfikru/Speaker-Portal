@@ -24,7 +24,15 @@ This is a Node.js backend project using Express and TypeScript.
 1. Install dependencies: `npm install`
 2. Run in dev mode: `npm run dev`
 3. Build: `npm run build`
-4. Start: `npm start`
+4. Start: `npm start`  
+
+---
+
+## Architecture
+
+- Currently structured as a monolithic prototype for simplicity and ease of demonstration.
+- Each domain module (auth, events, profile, etc.) is self-contained and can be extracted into independent microservices.
+- This design makes transitioning to a microservices architecture straightforward as the system scales.
 
 ---
 
